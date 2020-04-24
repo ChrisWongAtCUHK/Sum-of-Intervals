@@ -26,8 +26,14 @@ const sumIntervals = (intervals = []) => {
 			}
 
 			// overlap
-			if(shallowClone[j][0] >= start &&
-				shallowClone[j][1] <= end) {
+			if(shallowClone[j][0] >= start && shallowClone[j][1] <= end) {
+				overlap = true
+			}
+
+			// overlap
+			if (shallowClone[j][0] < start && shallowClone[j][1] > end) {
+				start = shallowClone[j][0]
+				end = shallowClone[j][1]
 				overlap = true
 			}
 
@@ -35,14 +41,16 @@ const sumIntervals = (intervals = []) => {
 				// remove element on the fly
 				shallowClone.splice(j, 1)
 				length--
+
+				if(shallowClone[i][0] !== start || shallowClone[i][1] !== end) {
+					shallowClone[i][0] = start
+					shallowClone[i][1] = end
+				}
+				i--
+				break
 			}
 		}
 
-		if(shallowClone[i][0] !== start || shallowClone[i][1] !== end) {
-			shallowClone[i][0] = start
-			shallowClone[i][1] = end
-			i--
-		}
 	}
 
 	return shallowClone.reduce((cur, next) => cur + (next[1] - next[0]), 0)
