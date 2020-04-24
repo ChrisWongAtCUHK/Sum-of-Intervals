@@ -1,4 +1,6 @@
 /* eslint-disable */
+const { expect } = require('chai')
+const sumIntervals = require('./kata')
 Array.prototype.shuffle = function(){
   var ran1, ran2, tmp;
   for(var i=0; i<this.length*2; i++){
@@ -32,7 +34,7 @@ describe('sumIntervals', function(){
     var sol;
     for(var i=0; i<noOverlaps.length; i++){
       sol = solution(noOverlaps[i]);
-      Test.assertEquals(sumIntervals(noOverlaps[i]), sol); 
+      expect(sumIntervals(noOverlaps[i])).eql(sol); 
     }
   });
   
@@ -83,7 +85,7 @@ describe('sumIntervals', function(){
     var sol;
     for(var i=0; i<overlaps.length; i++){
       sol = solution(overlaps[i]);
-      Test.assertEquals(sumIntervals(overlaps[i]), sol); 
+      expect(sumIntervals(overlaps[i])).eql(sol); 
     }    
   });
   
@@ -119,7 +121,7 @@ describe("Random tests", function() {
         a.push(x < y ? [x, y] : [y, x]);
       }
       let result = solution(a);
-      Test.assertEquals(sumIntervals(a), result);
+      expect(sumIntervals(a)).eql(result);
     }
   });
 });
