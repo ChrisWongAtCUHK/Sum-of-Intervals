@@ -1,30 +1,51 @@
 const sumIntervals = (intervals = []) => {
 	let shallowClone = [...intervals]
-	let sum = 0
 	let length = shallowClone.length
 
 	for(let i = 0; i < length; i++) {
-		let interval = shallowClone[i]
+		let start = shallowClone[i][0]
+		let end = shallowClone[i][1]
 
 		for(let j = i + 1; j < length; j++) {
-			// there is an overlap
-			if(shallowClone[j][0] < interval[1]) {
-				if(shallowClone[j][0] < interval[0]) {
-					// change the start
-					interval[0] = shallowClone[j][0]
-				}
-				// change the end
-				interval[1] = shallowClone[j][1]
+			let overlap = false
 
+			// overlap
+			if(shallowClone[j][0] < start &&
+				start < shallowClone[j][1]) {
+				// change the start
+				start = shallowClone[j][0]
+				overlap = true
+			}
+
+			//  overlap
+			if(shallowClone[j][0] < end &&
+				end < shallowClone[j][1]) {
+				// change the end
+				end = shallowClone[j][1]
+				overlap = true
+			}
+
+			// overlap
+			if(shallowClone[j][0] >= start &&
+				shallowClone[j][1] <= end) {
+				overlap = true
+			}
+
+			if(overlap) {
 				// remove element on the fly
 				shallowClone.splice(j, 1)
 				length--
 			}
 		}
-		sum += interval[1] - interval[0]
+
+		if(shallowClone[i][0] !== start || shallowClone[i][1] !== end) {
+			shallowClone[i][0] = start
+			shallowClone[i][1] = end
+			i--
+		}
 	}
 
-	return sum
+	return shallowClone.reduce((cur, next) => cur + (next[1] - next[0]), 0)
 }
 
 module.exports = sumIntervals

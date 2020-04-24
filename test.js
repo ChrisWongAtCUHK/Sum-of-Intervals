@@ -17,7 +17,9 @@ const intervalsList = [
    [1, 6],
    [16, 19],
    [5, 11]
-	]
+	],
+	[[1, 5]],
+	[[1, 5], [6, 10]]
 ]
 
 intervalsList.forEach((intervals) => {
