@@ -1,6 +1,6 @@
 /* eslint-disable */
 function sumIntervals(intervals){
-  return intervals
+  const result = intervals
     .sort(function(a, b){
       if (a[0] < b[0]) return -1;
       if (a[0] > b[0]) return 1;
@@ -12,6 +12,9 @@ function sumIntervals(intervals){
       }
       acc.top = Math.max(interval[1], acc.top);
       return acc;
-    }, {total: 0, top: 0})
-    .total;
+    }, {total: 0, top: -Infinity})
+		.total;
+	return result
 }
+
+module.exports = sumIntervals

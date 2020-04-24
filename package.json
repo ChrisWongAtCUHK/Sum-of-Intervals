@@ -4,7 +4,10 @@
   "description": "Write a function called `sumIntervals`/`sum_intervals()` that accepts an array of intervals, and returns the sum of all the interval lengths. Overlapping intervals should only be counted once.",
   "main": "kata.js",
   "scripts": {
-    "test": "mocha"
+    "test:kata": "env FILE=kata mocha",
+    "test:sol1": "env FILE=\"Solutions/sol1\" mocha",
+    "test:sol2": "env FILE=\"Solutions/sol2\" mocha",
+    "test:sol3": "env FILE=\"Solutions/sol3\" mocha"
   },
   "keywords": [],
   "author": "Chris Wong <wc38.wong@gmail.com>",

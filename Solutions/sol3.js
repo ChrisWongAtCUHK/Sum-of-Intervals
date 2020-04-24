@@ -8,3 +8,5 @@ function sumIntervals(intervals) {
   
   return ranges.size;
 }
+
+module.exports = sumIntervals

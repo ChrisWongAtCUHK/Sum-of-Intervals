@@ -1,6 +1,6 @@
 /* eslint-disable */
 const { expect } = require('chai')
-const sumIntervals = require('./kata')
+const sumIntervals = require(`./${process.env.FILE}`)
 Array.prototype.shuffle = function(){
   var ran1, ran2, tmp;
   for(var i=0; i<this.length*2; i++){
