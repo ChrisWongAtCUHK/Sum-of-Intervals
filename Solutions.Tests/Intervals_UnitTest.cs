@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Solutions;
+using System.Collections.Generic;
 
 namespace Solutions.Tests
 {
@@ -13,17 +14,29 @@ namespace Solutions.Tests
         [Test]
         public void NonOverlappingTest()
         {
-            (int, int)[] intervals = new (int, int)[3];
-            intervals[0].Item1 = 11;
-            intervals[0].Item2 = 15;
+            var noOverlaps = new List<(int, int)[]>();
+            noOverlaps.Add(new (int, int)[1]
+            {
+                (1, 5)
+            });
 
-            intervals[1].Item1 = 6;
-            intervals[1].Item2 = 10;
+            noOverlaps.Add(new (int, int)[2]
+            {
+                (1, 5),
+                (6, 10)
+            });
 
-            intervals[2].Item1 = 1;
-            intervals[2].Item2 = 2;
+            noOverlaps.Add(new (int, int)[3]
+            {
+                (11, 15),
+                (6, 10),
+                (1, 2)
+            });
 
-            Assert.AreEqual(Intervals.SumIntervals(intervals), 9);
+            foreach(var intervals in noOverlaps)
+            {
+                Assert.AreEqual(Intervals.SumIntervals(intervals), Intervals.SumIntervals1(intervals));
+            } 
         }
     }
 }
