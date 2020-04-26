@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Solutions;
+using System;
 using System.Collections.Generic;
 
 namespace Solutions.Tests
@@ -108,7 +109,27 @@ namespace Solutions.Tests
             foreach(var intervals in noOverlaps)
             {
                 Assert.AreEqual(Intervals.SumIntervals(intervals), Intervals.SumIntervals1(intervals));
-            } 
+            }
+        }
+
+        [Test]
+        public void RandomTest()
+        {
+            for(var i = 0; i < 100; i++)
+            {
+                List<(int, int)[]> list = new List<(int, int)[]>();
+                Random random = new Random();
+                int randomNumber = random.Next(1, 20);
+                (int, int)[] intervals = new (int, int)[randomNumber];
+                for(var j = randomNumber; j > 0 ; j--)
+                {
+                    var x = random.Next(-500, 499);
+                    var y = random.Next(x + 1, 500);
+                    intervals[j - 1].Item1 = x < y ? x : y;
+                    intervals[j - 1].Item2 = x > y ? x : y;
+                }
+                Assert.AreEqual(Intervals.SumIntervals(intervals), Intervals.SumIntervals1(intervals));
+            }
         }
     }
 }
