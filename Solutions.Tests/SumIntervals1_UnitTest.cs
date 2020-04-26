@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Solutions.Tests
 {
-    public class IntervalsTests
+    public class SumIntervals1_UnitTest
     {
         List<(int, int)[]> noOverlaps = new List<(int, int)[]>();
         List<(int, int)[]> overlaps = new List<(int, int)[]>();
